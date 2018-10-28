@@ -21,7 +21,7 @@ describe('MapPolyfill', () => {
       expect(map.get(bar)).toBeUndefined();
     });
 
-    it.only('should return the already set value', () => {
+    it('should return the already set value', () => {
       const foo = () => {};
       const map = new Map<Function, string>();
 
@@ -31,6 +31,34 @@ describe('MapPolyfill', () => {
   });
 
   describe('set()', () => {
+    it('should allow chaining', () => {
 
+    });
+  });
+
+  describe('delete()', () => {
+    it('should delete the item from the collection', () => {
+      const foo = () => {};
+      const map = new Map<Function, string>();
+
+      map.set(foo, 'first');
+      map.delete(foo);
+      expect(map.get(foo)).toBeUndefined();
+    })
+
+    it('should return true if the item was deleted', () => {
+      const foo = () => {};
+      const map = new Map<Function, string>();
+
+      map.set(foo, 'first');
+      expect(map.delete(foo)).toBeTruthy();
+    })
+
+    it('should return false if the item was not in the collection', () => {
+      const foo = () => {};
+      const map = new Map<Function, string>();
+
+      expect(map.delete(foo)).toBeFalsy();
+    })
   });
 });
